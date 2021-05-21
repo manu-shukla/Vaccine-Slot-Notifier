@@ -1,0 +1,42 @@
+.foot {
+  display: block;
+}
+.head {
+  text-align: center;
+}
+form {
+  display: flex;
+  padding: 100px 100px;
+  justify-content: center;
+  align-items: center;
+}
+select {
+  margin: 10px 10px;
+  font-size: 18px;
+}
+button
+{
+    font-size: 18px;
+    padding: 10px 20px;
+    margin: 15px 15px;
+}
+.section {
+  display: flex;
+  flex-direction: column;
+}
+.texts {
+  display: flex;
+  flex-direction: column;
+
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  justify-content: center;
+  text-align: center;
+  font-size: 18px;
+  align-items: center;
+  margin: 0;
+}
+.texts h3 {
+  margin: 0;
+}

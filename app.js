@@ -1,9 +1,9 @@
 const apiurl = "https://cdn-api.co-vin.in/api/v2/";
 let districtFetch = false;
 let centerFetch = false;
-let age = null;
-let newage;
-let interval;
+
+let newage = null;
+let interval = null;
 function reload() {
   window.location.reload();
   return;
@@ -17,7 +17,6 @@ function getDistricts() {
     .then(displayDistricts);
 }
 function displayDistricts(districts) {
-  console.log(districts.districts[2]);
 
   document.getElementById("lists").innerHTML = null;
   let def = document.createElement("option");
@@ -34,7 +33,7 @@ function displayDistricts(districts) {
   }
   let forms = document.getElementById("details");
   let datelabel = document.createElement("span");
-  datelabel.innerHTML = "Select Date:"
+  datelabel.innerHTML = "Select Date:";
   let date = document.createElement("input");
   date.type = "date";
   date.id = "dateselected";
@@ -42,6 +41,12 @@ function displayDistricts(districts) {
   forms.insertBefore(date, forms.childNodes[3]);
   let agelist = document.createElement("select");
   agelist.id = "age";
+  let option0 = document.createElement("option");
+  option0.value = "0";
+  option0.text = "Select your Age";
+  option0.selected;
+  option0.disabled;
+  agelist.add(option0);
   let option1 = document.createElement("option");
   option1.value = "18";
   option1.text = "18+";
@@ -53,14 +58,17 @@ function displayDistricts(districts) {
   agelist.add(option2);
   forms.insertBefore(agelist, forms.childNodes[4]);
   document.getElementById("btn").innerHTML = "Find";
-  age = document.getElementById("age").value;
-  newage = parseInt(age);
+
   document.getElementById("btn").onclick = function () {
+    setAge(document.getElementById("age").value);
     runscript(
       document.getElementById("lists").value,
       document.getElementById("dateselected").value
     );
   };
+}
+function setAge(age) {
+  newage = parseInt(age);
 }
 function runscript(district_id, date) {
   let section = document.getElementById("section");
@@ -95,9 +103,10 @@ function dateFormat(date) {
 
 function displayCenters(centers) {
   let arr = [];
-console.log("Still Working");
+  console.log(centers);
+  console.log("Still Working");
   for (let i of centers.sessions) {
-    if (i.min_age_limit == newage) {
+    if (i.min_age_limit == newage && i.available_capacity > 0) {
       arr.push(i);
     }
   }
@@ -115,10 +124,9 @@ console.log("Still Working");
       section.appendChild(heading);
       section.appendChild(para);
     }
-    let audio = new Audio('beep.wav');
+    let audio = new Audio("beep.wav");
     audio.play();
   }
-  
 }
 
 // function displayCenters(centers) {
