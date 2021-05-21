@@ -33,10 +33,13 @@ function displayDistricts(districts) {
     lists.add(option);
   }
   let forms = document.getElementById("details");
+  let datelabel = document.createElement("span");
+  datelabel.innerHTML = "Select Date:"
   let date = document.createElement("input");
   date.type = "date";
   date.id = "dateselected";
-  forms.insertBefore(date, forms.childNodes[2]);
+  forms.insertBefore(datelabel, forms.childNodes[2]);
+  forms.insertBefore(date, forms.childNodes[3]);
   let agelist = document.createElement("select");
   agelist.id = "age";
   let option1 = document.createElement("option");
@@ -48,7 +51,7 @@ function displayDistricts(districts) {
   option2.value = "45";
   option2.text = "45+";
   agelist.add(option2);
-  forms.insertBefore(agelist, forms.childNodes[3]);
+  forms.insertBefore(agelist, forms.childNodes[4]);
   document.getElementById("btn").innerHTML = "Find";
   age = document.getElementById("age").value;
   newage = parseInt(age);
