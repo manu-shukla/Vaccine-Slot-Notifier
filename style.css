@@ -6,19 +6,20 @@
 }
 form {
   display: flex;
+  flex-direction: column;
   padding: 100px 100px;
   justify-content: center;
   align-items: center;
 }
 select {
-  margin: 10px 10px;
+  margin: 2px 2px;
   font-size: 18px;
 }
 button
 {
     font-size: 18px;
-    padding: 10px 20px;
-    margin: 15px 15px;
+    padding: 5px 10px;
+    margin: 5px 5px;
 }
 .section {
   display: flex;
