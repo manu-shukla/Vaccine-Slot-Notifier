@@ -69,15 +69,22 @@ button:hover {
   margin: 0;
 }
 #desc {
-  display: none;
+  margin: 0;
+  
 }
 i {
-  padding: 25px;
+  padding: 0 25px;
   transition: 0.3s ease-in;
 }
 i:hover {
   transform: scale(2);
   cursor: pointer;
+}
+.comment{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 40px;
 }
 #dateselected {
   font-weight: bold;
