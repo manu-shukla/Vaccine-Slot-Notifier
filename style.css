@@ -1,37 +1,64 @@
+body {
+  font-family: "Bebas Neue", cursive;
+  background-color: #41b3a3;
+}
 .foot {
   display: block;
 }
 .head {
+  margin: 0;
+  padding: 0;
+
   text-align: center;
+  font-size: 28px;
 }
+
 form {
   display: flex;
   flex-direction: column;
-  padding: 100px 100px;
+  padding: 15px;
   justify-content: center;
   align-items: center;
+  padding-bottom: 20vh;
 }
-select {
-  margin: 2px 2px;
-  font-size: 18px;
+select,
+option {
+  font-weight: bold;
+  background-color: black;
+  color: white;
+  padding: 5px;
+  margin: 18px;
+  max-width: 90vw;
+  font-size: 24px;
 }
-button
-{
-    font-size: 18px;
-    padding: 5px 10px;
-    margin: 5px 5px;
+button {
+  font-size: 24px;
+  padding: 10px 15px;
+  margin: 30px 15px;
+  background-color: white;
+  border: 5px solid black;
+  font-weight: bold;
+  transition: 0.3s ease-in-out;
+}
+button:hover {
+  transform: scale(1.2);
+  background-color: black;
+  color: white;
+  border: 5px solid white;
 }
 .section {
   display: flex;
+  text-align: center;
+  justify-content: center;
   flex-direction: column;
+}
+.section h3 {
+  font-size: 24px;
 }
 .texts {
   display: flex;
   flex-direction: column;
 
-  position: fixed;
-  bottom: 0;
-  left: 50%;
   justify-content: center;
   text-align: center;
   font-size: 18px;
@@ -40,4 +67,48 @@ button
 }
 .texts h3 {
   margin: 0;
+}
+#desc {
+  display: none;
+}
+i {
+  padding: 25px;
+  transition: 0.3s ease-in;
+}
+i:hover {
+  transform: scale(2);
+  cursor: pointer;
+}
+#dateselected {
+  font-weight: bold;
+  background-color: black;
+  color: white;
+  padding: 5px;
+  margin: 2px 2px;
+  font-size: 24px;
+}
+span {
+  font-weight: bold;
+  color: black;
+
+  padding: 5px;
+  margin: 2px 2px;
+  font-size: 24px;
+}
+a {
+  text-decoration: none;
+}
+a:visited {
+  color: inherit;
+}
+.centername {
+  font-size: 28px;
+  text-align: center;
+}
+.centeraddress {
+  font-size: 22px;
+  text-align: center;
+}
+hr {
+  border: 3px solid white;
 }

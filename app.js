@@ -4,12 +4,13 @@ let centerFetch = false;
 
 let newage = null;
 let interval = null;
-function reload() {
-  window.location.reload();
-  return;
-}
+
 function getDistricts() {
   let stateId = document.getElementById("lists").value;
+  if (stateId == "0") {
+    alert("Please select a valid State!");
+    return;
+  }
   fetch(`${apiurl}admin/location/districts/${stateId}`)
     .then((districts) => {
       return districts.json();
@@ -17,11 +18,10 @@ function getDistricts() {
     .then(displayDistricts);
 }
 function displayDistricts(districts) {
-
   document.getElementById("lists").innerHTML = null;
   let def = document.createElement("option");
   def.text = "Select your District";
-  def.value = 0;
+  def.value = "0";
   def.selected;
   def.disabled;
   lists.add(def);
@@ -61,19 +61,38 @@ function displayDistricts(districts) {
 
   document.getElementById("btn").onclick = function () {
     setAge(document.getElementById("age").value);
-    runscript(
+    isValid(
       document.getElementById("lists").value,
       document.getElementById("dateselected").value
     );
   };
+}
+function isValid(district_id, date) {
+  if (district_id == "0" || newage == 0 || date == "") {
+    alert("Atleast one of the detail(s) entered is invalid!");
+    return;
+  } else {
+    runscript(
+      document.getElementById("lists").value,
+      document.getElementById("dateselected").value
+    );
+  }
 }
 function setAge(age) {
   newage = parseInt(age);
 }
 function runscript(district_id, date) {
   let section = document.getElementById("section");
-  section.innerHTML =
-    "Slots are being continuously checked in the background. We will notify you when the slots are available for your selected preference. Kindly login into your cowin portal before hand. DO NOT refresh the page.";
+  section.innerHTML = null;
+  let head = document.createElement("h3");
+  head.id = "checking";
+  let headtext = document.createTextNode(
+    "Slots are being continuously checked in the background. We will notify you when the slots are available for your selected preference. Kindly login into your cowin portal before hand. DO NOT refresh the page."
+  );
+  head.appendChild(headtext);
+  section.appendChild(head);
+  document.getElementById("checking").style.fontSize = "24px";
+  document.getElementById("checking").style.textAlign = "center";
   let newDate = dateFormat(date);
   interval = setInterval(getCenters, 4000, district_id, newDate);
 }
@@ -113,7 +132,7 @@ function displayCenters(centers) {
   if (arr.length > 0) {
     clearInterval(interval);
     let section = document.getElementById("section");
-    section.innerHTML = "<h1>We have found some centers for you.</h1>";
+    section.innerHTML = `<h1 style = "text-align:center;">We have found some centers for you.</h1><hr>`;
     for (let i of arr) {
       let heading = document.createElement("h3");
       let para = document.createElement("p");
@@ -121,6 +140,8 @@ function displayCenters(centers) {
       let ptext = document.createTextNode(`${i.address}`);
       heading.appendChild(htext);
       para.appendChild(ptext);
+      heading.classList.add("centername");
+      para.classList.add("centeraddress");
       section.appendChild(heading);
       section.appendChild(para);
     }
@@ -129,40 +150,3 @@ function displayCenters(centers) {
   }
 }
 
-// function displayCenters(centers) {
-//   console.log(centers);
-//   let centerList = document.createElement("select");
-//   centerList.id = "centerlist";
-//   document.getElementById("centers").appendChild(centerList);
-//   let lists = document.getElementById("centerlist");
-//   let def = document.createElement("option");
-//   def.text = "Select your Center";
-//   def.value = 0;
-//   def.selected;
-//   def.disabled;
-//   lists.add(def);
-
-//   let newage = parseInt(age);
-//   let k = 0;
-//   for (let i of centers.sessions) {
-//     // if (i.min_age_limit == newage) {
-//     let option = document.createElement("option");
-//     option.text = `${i.name}`;
-//     option.value = `${k}`;
-//     lists.add(option);
-//     // }
-//     ++k;
-//   }
-//   if (lists.length == 1) {
-//     alert("No Centers Available for the selected date");
-//     location.reload();
-//     return;
-//   }
-//   let button = document.createElement("button");
-//   button.innerHTML = "Execute the Search";
-//   button.onclick = function () {
-//     runscript(centers.sessions[document.getElementById("centerlist").value]);
-//   };
-
-//   document.getElementById("centers").appendChild(button);
-// }

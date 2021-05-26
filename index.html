@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vaccine Slot Finder</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://kit.fontawesome.com/a7da37d474.js" crossorigin="anonymous"></script>
   </head>
   <body>
     <div class="head">
@@ -53,16 +59,20 @@
           <option value="35">Uttarakhand</option>
           <option value="36">West Bengal</option>
         </select>
-        <button id="btn" onclick="getDistricts()">Next</button>
-        <button id="rst" onclick="reload()">Reload</button>
+        <div class="buttons">
+          <button id="btn" onclick="getDistricts()">Next</button>
+          <button type="reset">Reset</button>
+        </div>
       </form>
       <div id="centers"></div>
       <script src="app.js"></script>
+   
     </div>
-
     <div class="texts">
+     <a href="comment.html" title="Comments Section"> <i class="fas fa-comments fa-2x"></i></a>
+    <p id="desc">Report an Issue/Request a Feature/Share your Feedback</p>
       <h3>&copy; All Rights Reserved</h3>
       <h3>Website Created by Manu Shukla</h3>
-    </div>
+    
   </body>
 </html>
