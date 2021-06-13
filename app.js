@@ -5,6 +5,40 @@ let centerFetch = false;
 let newage = null;
 let interval = null;
 
+function loaded() {
+  if (!("Notification" in window)) {
+    alert("This browser does not support desktop notification");
+  }
+
+  // Let's check whether notification permissions have already been granted
+  else if (Notification.permission === "granted") {
+    // If it's okay let's create a notification
+    let notification = new Notification(
+      "Notification permission granted. We will notify you once the slot is available"
+    );
+  }
+
+  // Otherwise, we need to ask the user for permission
+  else if (Notification.permission !== "denied") {
+    alert(
+      "Please allow for the notification so that we will notify you when the slot is available"
+    );
+    Notification.requestPermission().then(function (permission) {
+      // If the user accepts, let's create a notification
+      if (permission === "granted") {
+        let notification = new Notification(
+          "Notification permission granted. We will notify you once the slot is available"
+        );
+      } else {
+        alert(
+          "You will not recieve the notification when the slot is available"
+        );
+      }
+    });
+  }
+}
+window.onload = loaded;
+
 function getDistricts() {
   let stateId = document.getElementById("lists").value;
   if (stateId == "0") {
@@ -145,8 +179,13 @@ function displayCenters(centers) {
       section.appendChild(heading);
       section.appendChild(para);
     }
+    if (Notification.permission === "granted") {
+      let options = {
+        body: "Slots are available. Comeback to the browser to check the locations",
+      };
+      let notification = new Notification("Slots are available", options);
+    }
     let audio = new Audio("beep.wav");
     audio.play();
   }
 }
-
